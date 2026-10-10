@@ -1,0 +1,22 @@
+{
+  "description": "Free AI chat web app backed by Token Harbor (zero dependencies)",
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "main": "server.js",
+  "name": "harbor-chat",
+  "scripts": {
+    "start": "node server.js",
+    "test": "NODE_PATH=web/node_modules node --test --import ./test/setup.mjs test/limits.test.js test/markdown.test.js test/ledger.test.js test/validate.test.js test/otp.test.js test/skills.test.js test/v4.test.js"
+  },
+  "version": "1.1.0",
+  "dependencies": {
+    "@neon/config": "^1.8.6",
+    "@neon/env": "^1.5.3",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "pg-mem": "^3.0.14"
+  }
+}
