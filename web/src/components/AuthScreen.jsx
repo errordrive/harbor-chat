@@ -150,8 +150,12 @@ export default function AuthScreen({ onAuthed, notice }) {
           <>
             {step === 'email' && (
               <>
-                <input className="auth-input" placeholder={tr('auth_name')} value={name} onChange={(e) => setName(e.target.value)} disabled={busy} />
-                <input className="auth-input" placeholder={tr('auth_email')} type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={busy} />
+                <label className="auth-field">{tr('auth_name')}
+                  <input placeholder="Your name" value={name} onChange={(e) => setName(e.target.value)} disabled={busy} />
+                </label>
+                <label className="auth-field">{tr('auth_email')}
+                  <input placeholder="you@example.com" type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={busy} />
+                </label>
                 <Turnstile siteKey={siteKey} onToken={setTurnstileToken} />
                 <button className="auth-submit" disabled={busy || !email} onClick={() => sendCode('signup')}>
                   {busy ? tr('auth_sending') : tr('auth_send_code')}
@@ -171,7 +175,9 @@ export default function AuthScreen({ onAuthed, notice }) {
             {step === 'password' && (
               <>
                 <p className="auth-sub">{tr('auth_email_ok')}</p>
-                <input className="auth-input" placeholder={tr('auth_password')} type="password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={busy} />
+                <label className="auth-field">{tr('auth_password')}
+                  <input placeholder="Min 8 characters" type="password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={busy} />
+                </label>
                 <button className="auth-submit" disabled={busy || password.length < 8} onClick={doSignup}>
                   {busy ? tr('auth_creating') : tr('auth_create')}
                 </button>
@@ -182,8 +188,12 @@ export default function AuthScreen({ onAuthed, notice }) {
 
         {mode === 'login' && (
           <>
-            <input className="auth-input" placeholder={tr('auth_email')} type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={busy} />
-            <input className="auth-input" placeholder={tr('auth_password')} type="password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={busy} />
+            <label className="auth-field">{tr('auth_email')}
+              <input placeholder="you@example.com" type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={busy} />
+            </label>
+            <label className="auth-field">{tr('auth_password')}
+              <input placeholder="••••••••" type="password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={busy} />
+            </label>
             <Turnstile siteKey={siteKey} onToken={setTurnstileToken} />
             <button className="auth-submit" disabled={busy || !email || !password} onClick={doPasswordLogin}>
               {busy ? tr('auth_signing_in') : tr('auth_signin')}
@@ -199,7 +209,9 @@ export default function AuthScreen({ onAuthed, notice }) {
           <>
             {step === 'email' && (
               <>
-                <input className="auth-input" placeholder={tr('auth_email')} type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={busy} />
+                <label className="auth-field">{tr('auth_email')}
+                  <input placeholder="you@example.com" type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={busy} />
+                </label>
                 <Turnstile siteKey={siteKey} onToken={setTurnstileToken} />
                 <button className="auth-submit" disabled={busy || !email} onClick={() => sendCode('login')}>
                   {busy ? tr('auth_sending') : tr('auth_send_code')}
